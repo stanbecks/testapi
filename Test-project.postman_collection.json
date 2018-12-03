@@ -1,0 +1,170 @@
+{
+	"info": {
+		"_postman_id": "de827a0d-f465-4e1f-920d-905ecfe86b1d",
+		"name": "Test-project",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Test-steps",
+			"item": [
+				{
+					"name": "List all project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "57b7b529-ae13-4f22-ba6b-d824eb8d41d7",
+								"exec": [
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2b5d4c89-09c5-4dad-9684-137ef5471ee7",
+								"exec": [
+									"",
+									"",
+									"",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "68c8fb88a31bbcf6651bb023076b7b23c9483f71",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://beta.todoist.com/API/v8/projects",
+							"protocol": "https",
+							"host": [
+								"beta",
+								"todoist",
+								"com"
+							],
+							"path": [
+								"API",
+								"v8",
+								"projects"
+							]
+						},
+						"description": "Initialize functions and variables, and Login"
+					},
+					"response": []
+				},
+				{
+					"name": "Add new project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "57b7b529-ae13-4f22-ba6b-d824eb8d41d7",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"",
+									"tests[\"NewProject1 returns in response\"] = jsonData.name.has(\"NewProject1\");",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2b5d4c89-09c5-4dad-9684-137ef5471ee7",
+								"exec": [
+									"",
+									"",
+									"",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "68c8fb88a31bbcf6651bb023076b7b23c9483f71",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "NewProject1",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://beta.todoist.com/API/v8/projects?name=NewProject1",
+							"protocol": "https",
+							"host": [
+								"beta",
+								"todoist",
+								"com"
+							],
+							"path": [
+								"API",
+								"v8",
+								"projects"
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "NewProject1"
+								}
+							]
+						},
+						"description": "Initialize functions and variables, and Login"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
