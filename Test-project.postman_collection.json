@@ -14,7 +14,7 @@
 						{
 							"listen": "test",
 							"script": {
-								"id": "57b7b529-ae13-4f22-ba6b-d824eb8d41d7",
+								"id": "d1bab026-3c6a-4cb5-a8aa-4d4a363c9fac",
 								"exec": [
 									"var jsonData = JSON.parse(responseBody);",
 									"",
@@ -37,7 +37,7 @@
 						{
 							"listen": "prerequest",
 							"script": {
-								"id": "2b5d4c89-09c5-4dad-9684-137ef5471ee7",
+								"id": "fa76489d-6dcd-43e5-bcfa-808f7b3319b4",
 								"exec": [
 									"",
 									"",
@@ -58,7 +58,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "68c8fb88a31bbcf6651bb023076b7b23c9483f71",
+									"value": "c87569e32e8ba789b140de618bf06684adcd3181",
 									"type": "string"
 								}
 							]
@@ -88,81 +88,27 @@
 									"value": "NewProject1"
 								}
 							]
-						},
-						"description": "Initialize functions and variables, and Login"
-					},
-					"response": []
-				},
-				{
-					"name": "Add new task to project",
-					"event": [
-						{
-							"listen": "test",
-							"script": {
-								"id": "1bf251b4-89ab-4fbe-b040-d9a6bcf18daf",
-								"exec": [
-									""
-								],
-								"type": "text/javascript"
-							}
-						}
-					],
-					"request": {
-						"auth": {
-							"type": "bearer",
-							"bearer": [
-								{
-									"key": "token",
-									"value": "68c8fb88a31bbcf6651bb023076b7b23c9483f71",
-									"type": "string"
-								}
-							]
-						},
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/x-www-form-urlencoded",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": ""
-						},
-						"url": {
-							"raw": "https://beta.todoist.com/API/v8/tasks?content=qqqq",
-							"protocol": "https",
-							"host": [
-								"beta",
-								"todoist",
-								"com"
-							],
-							"path": [
-								"API",
-								"v8",
-								"tasks"
-							],
-							"query": [
-								{
-									"key": "content",
-									"value": "qqqq"
-								}
-							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "List all project",
+					"name": "Add task to project",
 					"event": [
 						{
 							"listen": "test",
 							"script": {
 								"id": "57b7b529-ae13-4f22-ba6b-d824eb8d41d7",
 								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"",
 									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"postman.setGlobalVariable(\"newtask_id\", jsonData.id);",
+									"",
+									"tests[\"newTask1 returns in response\"] = jsonData.content.has(\"newTask1\");",
+									"",
 									"",
 									"",
 									""
@@ -194,19 +140,19 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "68c8fb88a31bbcf6651bb023076b7b23c9483f71",
+									"value": "c87569e32e8ba789b140de618bf06684adcd3181",
 									"type": "string"
 								}
 							]
 						},
-						"method": "GET",
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
 							"raw": ""
 						},
 						"url": {
-							"raw": "https://beta.todoist.com/API/v8/projects",
+							"raw": "https://beta.todoist.com/API/v8/tasks?content=newTask1&project_id={{newproject1_id}}",
 							"protocol": "https",
 							"host": [
 								"beta",
@@ -216,22 +162,279 @@
 							"path": [
 								"API",
 								"v8",
-								"projects"
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "content",
+									"value": "newTask1"
+								},
+								{
+									"key": "project_id",
+									"value": "{{newproject1_id}}"
+								}
 							]
-						},
-						"description": "Initialize functions and variables, and Login"
+						}
 					},
 					"response": []
 				},
 				{
-					"name": "List all tasks",
+					"name": "Add second task to project",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "57b7b529-ae13-4f22-ba6b-d824eb8d41d7",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"postman.setGlobalVariable(\"newtask2_id\", jsonData.id);",
+									"",
+									"tests[\"newTask2 returns in response\"] = jsonData.content.has(\"newTask2\");",
+									"",
+									"",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2b5d4c89-09c5-4dad-9684-137ef5471ee7",
+								"exec": [
+									"",
+									"",
+									"",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"auth": {
 							"type": "bearer",
 							"bearer": [
 								{
 									"key": "token",
-									"value": "68c8fb88a31bbcf6651bb023076b7b23c9483f71",
+									"value": "c87569e32e8ba789b140de618bf06684adcd3181",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://beta.todoist.com/API/v8/tasks?content=newTask2&project_id={{newproject1_id}}",
+							"protocol": "https",
+							"host": [
+								"beta",
+								"todoist",
+								"com"
+							],
+							"path": [
+								"API",
+								"v8",
+								"tasks"
+							],
+							"query": [
+								{
+									"key": "content",
+									"value": "newTask2"
+								},
+								{
+									"key": "project_id",
+									"value": "{{newproject1_id}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Close the second task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "57b7b529-ae13-4f22-ba6b-d824eb8d41d7",
+								"exec": [
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2b5d4c89-09c5-4dad-9684-137ef5471ee7",
+								"exec": [
+									"",
+									"",
+									"",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "c87569e32e8ba789b140de618bf06684adcd3181",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://beta.todoist.com/API/v8/tasks/{{newtask2_id}}/close",
+							"protocol": "https",
+							"host": [
+								"beta",
+								"todoist",
+								"com"
+							],
+							"path": [
+								"API",
+								"v8",
+								"tasks",
+								"{{newtask2_id}}",
+								"close"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reopen the second task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "57b7b529-ae13-4f22-ba6b-d824eb8d41d7",
+								"exec": [
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "2b5d4c89-09c5-4dad-9684-137ef5471ee7",
+								"exec": [
+									"",
+									"",
+									"",
+									"",
+									"",
+									"",
+									"",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "c87569e32e8ba789b140de618bf06684adcd3181",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "https://beta.todoist.com/API/v8/tasks/{{newtask2_id}}/reopen",
+							"protocol": "https",
+							"host": [
+								"beta",
+								"todoist",
+								"com"
+							],
+							"path": [
+								"API",
+								"v8",
+								"tasks",
+								"{{newtask2_id}}",
+								"reopen"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List all tasks",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "bd93d719-e396-4d38-8130-9ac921d42567",
+								"exec": [
+									"var jsonData = JSON.parse(responseBody);",
+									"",
+									"",
+									"tests[\"Status code is 200\"] = responseCode.code === 200;",
+									"",
+									"",
+									"tests[\"newTask2 returns in response\"] = jsonData[9].content.has(\"newTask2\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "c87569e32e8ba789b140de618bf06684adcd3181",
 									"type": "string"
 								}
 							]
