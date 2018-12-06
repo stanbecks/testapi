@@ -14,9 +14,9 @@
 	   
 
 # **Note:**
-*Endpoints used:
-**https://beta.todoist.com/API/v8/projects
-**https://beta.todoist.com/API/v8/tasks
+Endpoints used:
+1. https://beta.todoist.com/API/v8/projects
+2. https://beta.todoist.com/API/v8/tasks
 
 
-# https://beta.todoist.com/API/v8/tasks endpoint has issues where failed when project_id is provided.
+https://beta.todoist.com/API/v8/tasks endpoint has issues where failed when project_id is provided.
